@@ -5,155 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iPrincesses - Find Your Perfect Match</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Add this new style for the SMS simulation */
+        .sms-simulation {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #25D366;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 4000;
+            display: none;
+            animation: slideDown 0.3s ease;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        @keyframes slideDown {
+            from { transform: translate(-50%, -100%); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+
+        .sms-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sms-icon {
+            font-size: 20px;
+        }
+
+        .close-sms {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        /* Rest of your existing CSS remains the same */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #ff4d94;
+            --secondary: #6a11cb;
+            --accent: #ffb6c1;
+            --dark: #333;
+            --light: #f8f9fa;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --whatsapp: #25D366;
+            --facebook: #3b5998;
+            --google: #db4437;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* ... (rest of your existing CSS) ... */
+    </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- SMS Simulation Notification -->
+    <div class="sms-simulation" id="sms-simulation">
+        <div class="sms-content">
+            <div class="sms-icon">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="sms-text">
+                <strong>SMS Sent!</strong> Check your phone for verification code
+            </div>
+            <button class="close-sms" id="close-sms">&times;</button>
+        </div>
+    </div>
+
+    <!-- Your existing HTML content -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="header-left">
-                    <button class="mobile-menu-btn" id="mobile-menu-btn">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    
-                    <div class="logo-container">
-                        <div class="logo">iP</div>
-                        <div class="logo-text">i<span>Princesses</span></div>
-                    </div>
-                </div>
-                
-                <nav>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#princesses">Princesses</a></li>
-                        <li><a href="#premium">Premium</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#services">Services</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="header-right">
-                    <div class="search-icon" id="search-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <div class="auth-buttons" id="auth-buttons">
-                        <button class="btn btn-primary" id="login-btn">Login</button>
-                        <button class="btn btn-outline" id="signup-btn">Sign Up</button>
-                    </div>
-                    <div class="user-info" id="user-info">
-                        <div class="user-avatar" id="user-avatar">U</div>
-                        <div class="user-name" id="user-name">User</div>
-                        <button class="btn btn-outline" id="logout-btn">Logout</button>
-                    </div>
-                </div>
-                
-                <div class="mobile-menu" id="mobile-menu">
-                    <button class="menu-close" id="menu-close">
-                        <i class="fas fa-times"></i>
-                    </button>
-                    <ul>
-                        <li><a href="#home" class="menu-link">Home</a></li>
-                        <li><a href="#princesses" class="menu-link">Princesses</a></li>
-                        <li><a href="#premium" class="menu-link">Premium</a></li>
-                        <li><a href="#pricing" class="menu-link">Pricing</a></li>
-                        <li><a href="#services" class="menu-link">Services</a></li>
-                        <li><a href="#about" class="menu-link">About Us</a></li>
-                        <li><a href="#contact" class="menu-link">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="menu-overlay" id="menu-overlay"></div>
-            </div>
-        </div>
+        <!-- ... header content ... -->
     </header>
-
-    <!-- Success Message -->
-    <div class="success-message" id="success-message">
-        <i class="fas fa-check-circle"></i> Welcome to iPrincesses!
-    </div>
-
-    <!-- Login Modal -->
-    <div class="modal" id="login-modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-login">&times;</span>
-            <h2 class="modal-title">Login</h2>
-            
-            <div class="social-login">
-                <button class="social-btn google" id="google-login">
-                    <i class="fab fa-google"></i> Continue with Google
-                </button>
-                <button class="social-btn facebook" id="facebook-login">
-                    <i class="fab fa-facebook-f"></i> Continue with Facebook
-                </button>
-            </div>
-            
-            <div class="divider">
-                <span>or</span>
-            </div>
-            
-            <form class="auth-form" id="login-form">
-                <div class="form-group">
-                    <label for="login-phone">Phone Number</label>
-                    <input type="tel" id="login-phone" class="form-control" placeholder="+256 XXX XXX XXX" required>
-                </div>
-                <div class="form-group">
-                    <label for="login-password">Password</label>
-                    <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
-                <div class="auth-switch">
-                    Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Signup Modal -->
-    <div class="modal" id="signup-modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-signup">&times;</span>
-            <h2 class="modal-title">Sign Up</h2>
-            
-            <div class="social-login">
-                <button class="social-btn google" id="google-signup">
-                    <i class="fab fa-google"></i> Continue with Google
-                </button>
-                <button class="social-btn facebook" id="facebook-signup">
-                    <i class="fab fa-facebook-f"></i> Continue with Facebook
-                </button>
-            </div>
-            
-            <div class="divider">
-                <span>or</span>
-            </div>
-            
-            <form class="auth-form" id="signup-form">
-                <div class="form-group">
-                    <label for="signup-name">Full Name</label>
-                    <input type="text" id="signup-name" class="form-control" placeholder="Enter your full name" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-phone">Phone Number</label>
-                    <input type="tel" id="signup-phone" class="form-control" placeholder="+256 XXX XXX XXX" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-password">Password</label>
-                    <input type="password" id="signup-password" class="form-control" placeholder="Create a password" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-confirm">Confirm Password</label>
-                    <input type="password" id="signup-confirm" class="form-control" placeholder="Confirm your password" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
-                <div class="auth-switch">
-                    Already have an account? <a href="#" id="switch-to-login">Login</a>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <!-- Verification Modal -->
     <div class="modal" id="verification-modal">
@@ -164,6 +115,13 @@
             <div class="verification-info">
                 <p>We've sent a 6-digit verification code to <strong id="verification-phone"></strong></p>
                 <p>Please enter the code below to verify your account.</p>
+                
+                <!-- Add this demo code display -->
+                <div class="demo-code" style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 15px 0; text-align: center; border: 2px dashed #ff4d94;">
+                    <p style="margin: 0; color: #333; font-weight: bold;">
+                        <i class="fas fa-info-circle"></i> DEMO: Your code is <span id="demo-code-display" style="color: #ff4d94; font-size: 18px;"></span>
+                    </p>
+                </div>
             </div>
             
             <form class="auth-form" id="verification-form">
@@ -190,270 +148,188 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Find Your Perfect Princess</h1>
-            <p>iPrincesses connects you with beautiful, elegant companions for any occasion. Browse our verified princesses and find your perfect match today.</p>
-            <button class="btn btn-primary" id="browse-princesses">Browse Princesses</button>
-        </div>
-    </section>
+    <!-- Rest of your HTML content -->
 
-    <!-- Search Section -->
-    <section class="search-section">
-        <div class="container">
-            <div class="search-container">
-                <div class="search-box">
-                    <input type="text" class="search-input" id="search-input" placeholder="Search princesses by name, location, or services...">
-                    <button class="btn btn-primary" id="search-btn">Search</button>
-                </div>
-                <div class="search-results" id="search-results">
-                    <!-- Search results will appear here -->
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>
+        // Enhanced SMS simulation function
+        function sendVerificationCode(phoneNumber, code) {
+            console.log(`📱 SMS sent to ${phoneNumber}: Your iPrincesses verification code is ${code}`);
+            
+            // Show the SMS simulation notification
+            const smsSimulation = document.getElementById('sms-simulation');
+            smsSimulation.style.display = 'block';
+            
+            // Show the demo code in the verification modal
+            document.getElementById('demo-code-display').textContent = code;
+            
+            // Auto-hide the SMS notification after 5 seconds
+            setTimeout(() => {
+                smsSimulation.style.display = 'none';
+            }, 5000);
+            
+            // Store for verification
+            localStorage.setItem('last_verification_code', code);
+            localStorage.setItem('last_verification_phone', phoneNumber);
+            
+            return Promise.resolve({ success: true });
+        }
 
-    <!-- Features Section -->
-    <section class="container">
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-user-shield"></i>
-                </div>
-                <h3>Verified Profiles</h3>
-                <p>All our princesses are carefully verified to ensure authenticity and quality.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <h3>Premium Selection</h3>
-                <p>We handpick only the most elegant and sophisticated companions.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <h3>Discreet & Secure</h3>
-                <p>Your privacy and security are our top priorities at all times.</p>
-            </div>
-        </div>
-    </section>
+        // Close SMS notification
+        document.getElementById('close-sms').addEventListener('click', function() {
+            document.getElementById('sms-simulation').style.display = 'none';
+        });
 
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2 class="section-title">Membership Plans</h2>
-            <div class="pricing-plans">
-                <div class="plan">
-                    <h3>Basic</h3>
-                    <div class="price">UGX 35,000</div>
-                    <p class="price-note">Approx. $10 USD</p>
-                    <ul>
-                        <li>7 Days Access</li>
-                        <li>Browse Princesses</li>
-                        <li>Basic Contact Info</li>
-                        <li>Standard Support</li>
-                    </ul>
-                    <button class="btn btn-primary">Select Plan</button>
-                </div>
-                <div class="plan popular">
-                    <h3>Premium</h3>
-                    <div class="price">UGX 120,000</div>
-                    <p class="price-note">Approx. $32 USD</p>
-                    <ul>
-                        <li>30 Days Access</li>
-                        <li>Full Princess Details</li>
-                        <li>Priority Contact</li>
-                        <li>VIP Support</li>
-                        <li>Featured Listings</li>
-                    </ul>
-                    <button class="btn btn-primary">Select Plan</button>
-                </div>
-                <div class="plan">
-                    <h3>Elite</h3>
-                    <div class="price">UGX 300,000</div>
-                    <p class="price-note">Approx. $80 USD</p>
-                    <ul>
-                        <li>90 Days Access</li>
-                        <li>All Premium Features</li>
-                        <li>Direct Introductions</li>
-                        <li>24/7 Concierge</li>
-                        <li>Exclusive Events</li>
-                    </ul>
-                    <button class="btn btn-primary">Select Plan</button>
-                </div>
-            </div>
-        </div>
-    </section>
+        // Enhanced verification function
+        function verifyPhoneNumber(userData) {
+            const verificationCode = generateVerificationCode();
+            const phoneNumber = userData.phone;
+            
+            const verificationModal = document.getElementById('verification-modal');
+            const verificationPhone = document.getElementById('verification-phone');
+            
+            verificationPhone.textContent = phoneNumber;
+            document.getElementById('verification-user-data').value = JSON.stringify(userData);
+            document.getElementById('verification-code').value = verificationCode;
+            
+            // Clear previous inputs and auto-focus first input
+            document.querySelectorAll('.code-input').forEach(input => input.value = '');
+            document.querySelector('.code-input').focus();
+            
+            // Show modal
+            verificationModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Start countdown
+            startVerificationCountdown();
+            
+            // Send verification code with enhanced simulation
+            sendVerificationCode(phoneNumber, verificationCode);
+            
+            // Auto-fill for demo purposes (optional - remove in production)
+            setTimeout(() => {
+                if (confirm('For demo purposes: Do you want to auto-fill the verification code?')) {
+                    const codeInputs = document.querySelectorAll('.code-input');
+                    verificationCode.split('').forEach((digit, index) => {
+                        if (codeInputs[index]) {
+                            codeInputs[index].value = digit;
+                        }
+                    });
+                }
+            }, 1000);
+        }
 
-    <!-- Premium Section -->
-    <section class="pricing" id="premium">
-        <div class="container">
-            <h2 class="section-title">Premium Features</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3>VIP Access</h3>
-                    <p>Get exclusive access to our most premium princesses and services.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-concierge-bell"></i>
-                    </div>
-                    <h3>Personal Concierge</h3>
-                    <p>24/7 dedicated support to help you find your perfect match.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Enhanced Privacy</h3>
-                    <p>Advanced privacy features to protect your identity and preferences.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        // Enhanced code input handling
+        function setupCodeInputs() {
+            const codeInputs = document.querySelectorAll('.code-input');
+            
+            codeInputs.forEach((input, index) => {
+                input.addEventListener('input', (e) => {
+                    // Only allow numbers
+                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                    
+                    if (e.target.value.length === 1) {
+                        if (index < codeInputs.length - 1) {
+                            codeInputs[index + 1].focus();
+                        } else {
+                            // Auto-submit when last digit is entered
+                            setTimeout(() => {
+                                document.getElementById('verify-btn').click();
+                            }, 300);
+                        }
+                    }
+                });
+                
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace') {
+                        if (e.target.value === '' && index > 0) {
+                            codeInputs[index - 1].focus();
+                        }
+                    }
+                    
+                    // Allow navigation with arrow keys
+                    if (e.key === 'ArrowLeft' && index > 0) {
+                        codeInputs[index - 1].focus();
+                    }
+                    if (e.key === 'ArrowRight' && index < codeInputs.length - 1) {
+                        codeInputs[index + 1].focus();
+                    }
+                });
+                
+                // Paste handling
+                input.addEventListener('paste', (e) => {
+                    e.preventDefault();
+                    const pasteData = e.clipboardData.getData('text').replace(/[^0-9]/g, '').slice(0, 6);
+                    
+                    pasteData.split('').forEach((char, charIndex) => {
+                        if (codeInputs[index + charIndex]) {
+                            codeInputs[index + charIndex].value = char;
+                        }
+                    });
+                    
+                    // Focus the next empty input or last input
+                    const lastFilledIndex = Math.min(index + pasteData.length, codeInputs.length - 1);
+                    codeInputs[lastFilledIndex].focus();
+                });
+            });
+        }
 
-    <!-- Services Section -->
-    <section class="pricing" id="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Dinner Dates</h3>
-                    <p>Elegant companions for fine dining experiences and social events.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-plane"></i>
-                    </div>
-                    <h3>Travel Companions</h3>
-                    <p>Beautiful partners for business trips, vacations, and getaways.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-glass-cheers"></i>
-                    </div>
-                    <h3>Event Escorts</h3>
-                    <p>Sophisticated companions for weddings, parties, and corporate events.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        // Enhanced verification form submission
+        document.getElementById('verification-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const enteredCode = Array.from(document.querySelectorAll('.code-input'))
+                .map(input => input.value)
+                .join('');
+            const expectedCode = document.getElementById('verification-code').value;
+            const userData = JSON.parse(document.getElementById('verification-user-data').value);
+            
+            if (enteredCode.length !== 6) {
+                alert('Please enter all 6 digits of the verification code.');
+                return;
+            }
+            
+            if (enteredCode === expectedCode) {
+                // Code is correct, create user
+                users.push(userData);
+                localStorage.setItem('iprincesses_users', JSON.stringify(users));
+                
+                currentUser = userData;
+                localStorage.setItem('iprincesses_current_user', JSON.stringify(currentUser));
+                
+                updateAuthUI();
+                closeModal(verificationModal);
+                showSuccessMessage(`🎉 Welcome to iPrincesses, ${userData.name}! Your account has been verified.`);
+                
+                // Clear timer
+                if (verificationTimer) {
+                    clearInterval(verificationTimer);
+                }
+            } else {
+                alert('❌ Invalid verification code. Please try again.');
+                // Shake animation for wrong code
+                const codeInputs = document.querySelector('.code-inputs');
+                codeInputs.style.animation = 'shake 0.5s';
+                setTimeout(() => codeInputs.style.animation = '', 500);
+            }
+        });
 
-    <!-- About Us Section -->
-    <section class="pricing" id="about">
-        <div class="container">
-            <h2 class="section-title">About Us</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Our Mission</h3>
-                    <p>To create meaningful connections between sophisticated individuals and elegant companions in a safe, discreet environment.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Our Community</h3>
-                    <p>We've built a trusted community of verified princesses and discerning clients who value quality and discretion.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3>Our Standards</h3>
-                    <p>Every princess in our network undergoes a thorough verification process to ensure the highest quality standards.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        // Add shake animation for wrong codes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
 
-    <!-- Princesses Section -->
-    <section class="princesses container" id="princesses">
-        <h2 class="section-title">Our Princesses</h2>
-        <div class="gallery-filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="available">Available</button>
-            <button class="filter-btn" data-filter="expired">Expired</button>
-            <button class="filter-btn" data-filter="unavailable">Unavailable</button>
-        </div>
-        <div class="princesses-grid" id="princesses-container">
-            <!-- Princesses will be dynamically added here -->
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>iPrincesses</h3>
-                    <p>The premier platform for connecting with elegant companions for any occasion.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/256703055329"><i class="fab fa-whatsapp"></i></a>
-                        <a href="mailto:info@iprincesses.com"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#princesses">Princesses</a></li>
-                        <li><a href="#premium">Premium</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> +256 703 055 329</li>
-                        <li><i class="fas fa-envelope"></i> info@iprincesses.com</li>
-                        <li><i class="fab fa-whatsapp"></i> +256 703 055 329</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 iPrincesses. All rights reserved. For adults only.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Call Button -->
-    <a href="tel:+256703055329" class="floating-call">
-        <i class="fas fa-phone"></i>
-    </a>
-
-    <script src="js/auth.js"></script>
-    <script src="js/princesses.js"></script>
-    <script src="js/app.js"></script>
-    <!-- Add pagination container after princesses grid -->
-<div class="pagination-container" id="pagination-container"></div>
-
-<!-- Add admin button to header (optional) -->
-<!-- <button class="btn btn-outline" id="admin-btn" style="margin-left: 10px;">
-    <i class="fas fa-cog"></i> Admin
-</button> -->
-
-<!-- Update script imports -->
-<script src="js/database.js"></script>
-<script src="js/admin.js"></script>
-<script src="js/princesses.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/app.js"></script>
+        // Initialize the enhanced code inputs when DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setupCodeInputs();
+            
+            // Your other existing initialization code...
+        });
+    </script>
 </body>
 </html>
