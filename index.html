@@ -1183,6 +1183,120 @@
                 grid-template-columns: 1fr;
             }
         }
+       <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPrincesses - Find Your Perfect Match</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <style>
+        /* YOUR EXISTING CSS - DON'T TOUCH THIS PART */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #ff4d94;
+            --secondary: #6a11cb;
+            --accent: #ffb6c1;
+            --dark: #333;
+            --light: #f8f9fa;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --whatsapp: #25D366;
+            --facebook: #3b5998;
+            --google: #db4437;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ... ALL YOUR EXISTING CSS STAYS EXACTLY THE SAME ... */
+
+        /* ========== ADD THESE NEW STYLES AT THE END OF YOUR CSS ========== */
+        
+        /* Admin Panel Styles */
+        .admin-panel {
+            display: none;
+            background: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .admin-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            color: #333;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .admin-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .form-full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .image-preview {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+        }
+        
+        .upload-progress {
+            display: none;
+            color: var(--primary);
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+    </style>
+</head> 
     </style>
 </head>
 <body>
