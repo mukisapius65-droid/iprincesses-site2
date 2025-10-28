@@ -1060,71 +1060,6 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        /* Admin Panel Styles */
-        .admin-panel {
-            display: none;
-            background: rgba(0, 0, 0, 0.9);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 3000;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        
-        .admin-content {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-            color: #333;
-        }
-        
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 15px;
-        }
-        
-        .admin-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .form-full-width {
-            grid-column: 1 / -1;
-        }
-        
-        .image-preview {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin: 10px 0;
-            border: 2px solid #ddd;
-        }
-        
-        .upload-progress {
-            display: none;
-            color: var(--primary);
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        
-        .admin-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
         /* Responsive Styles */
         @media (max-width: 1024px) {
             nav ul {
@@ -1171,8 +1106,18 @@
                 right: 0;
             }
 
+            /* AUTH BUTTONS ON MOBILE - UPPER RIGHT CORNER */
             .auth-buttons {
+                position: absolute;
+                top: 15px;
+                right: 70px;
+                gap: 5px;
                 margin-top: 0;
+            }
+
+            .auth-buttons .btn {
+                padding: 6px 12px;
+                font-size: 12px;
             }
 
             .code-inputs {
@@ -1192,10 +1137,6 @@
 
             .user-name {
                 display: none;
-            }
-
-            .admin-form {
-                grid-template-columns: 1fr;
             }
         }
 
@@ -1230,9 +1171,17 @@
                 width: 80%;
             }
 
+            /* AUTH BUTTONS ON SMALL MOBILE */
             .auth-buttons {
-                flex-direction: column;
-                gap: 5px;
+                position: absolute;
+                top: 15px;
+                right: 60px;
+                gap: 3px;
+            }
+
+            .auth-buttons .btn {
+                padding: 5px 10px;
+                font-size: 11px;
             }
 
             .btn {
@@ -1297,11 +1246,6 @@
                         <button class="btn btn-primary" id="login-btn">Login</button>
                         <button class="btn btn-outline" id="signup-btn">Sign Up</button>
                     </div>
-                    
-                    <!-- Admin Button -->
-                    <button class="btn btn-outline" id="admin-login-btn" style="display: none;">
-                        <i class="fas fa-cog"></i> Admin
-                    </button>
                     
                     <div class="user-info" id="user-info">
                         <div class="user-avatar" id="user-avatar">U</div>
@@ -1447,117 +1391,6 @@
                     <span id="countdown" class="countdown">(60s)</span>
                 </div>
             </form>
-        </div>
-    </div>
-
-    <!-- Admin Panel Modal -->
-    <div class="admin-panel" id="admin-panel">
-        <div class="admin-content">
-            <div class="admin-header">
-                <h2>iPrincesses Admin Panel</h2>
-                <button class="btn btn-danger" id="close-admin">
-                    <i class="fas fa-times"></i> Close
-                </button>
-            </div>
-            
-            <!-- Admin Login Form -->
-            <div id="admin-login-form">
-                <h3>Admin Login</h3>
-                <div class="form-group">
-                    <label>Email:</label>
-                    <input type="email" id="admin-email" class="form-control" value="admin@iprincesses.com">
-                </div>
-                <div class="form-group">
-                    <label>Password:</label>
-                    <input type="password" id="admin-password" class="form-control" value="admin123">
-                </div>
-                <button class="btn btn-primary" id="admin-login-submit">Login</button>
-                <p><small>Default: admin@iprincesses.com / admin123</small></p>
-            </div>
-            
-            <!-- Admin Management Interface -->
-            <div id="admin-management" style="display: none;">
-                <h3>Manage Princess</h3>
-                <div class="admin-form">
-                    <input type="hidden" id="edit-princess-id">
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Name:*</label>
-                            <input type="text" id="admin-name" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Age:*</label>
-                            <input type="number" id="admin-age" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Location:*</label>
-                            <input type="text" id="admin-location" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Phone:*</label>
-                            <input type="text" id="admin-phone" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Status:*</label>
-                            <select id="admin-status" class="form-control" required>
-                                <option value="available">Available</option>
-                                <option value="unavailable">Unavailable</option>
-                                <option value="expired">Expired</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Days Left:*</label>
-                            <input type="number" id="admin-daysLeft" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group" style="grid-column: 1 / -1;">
-                            <label>Services (comma separated):*</label>
-                            <input type="text" id="admin-services" class="form-control" 
-                                   placeholder="Dinner Dates, Travel Companion, Events" required>
-                        </div>
-                        
-                        <div class="form-group" style="grid-column: 1 / -1;">
-                            <label>Remark:*</label>
-                            <textarea id="admin-remark" class="form-control" required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Image Upload:</label>
-                            <input type="file" id="admin-image" accept="image/*" class="form-control">
-                            <div class="upload-progress" id="upload-progress"></div>
-                            <img id="image-preview" class="image-preview" style="display: none;">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Shy (face covered):</label>
-                            <select id="admin-shy" class="form-control">
-                                <option value="false">No</option>
-                                <option value="true">Yes</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 20px;">
-                        <button class="btn btn-primary" id="save-princess">
-                            <i class="fas fa-save"></i> Save Princess
-                        </button>
-                        <button class="btn btn-outline" id="reset-form">
-                            <i class="fas fa-times"></i> Cancel
-                        </button>
-                    </div>
-                </div>
-                
-                <h3 style="margin-top: 40px;">All Princesses</h3>
-                <div id="admin-princesses-list" class="princesses-grid">
-                    <!-- Princess cards will be loaded here -->
-                </div>
-            </div>
         </div>
     </div>
 
@@ -1811,16 +1644,15 @@
 
     <script>
         // ==================== FIREBASE CONFIGURATION ====================
-        // REPLACE THESE VALUES WITH YOUR ACTUAL FIREBASE CONFIG
         const firebaseConfig = {
-  apiKey: "AIzaSyBew9lr38dVJj_T7qpdvNWvATJeder5tjU",
-  authDomain: "iprincesses3.firebaseapp.com",
-  projectId: "iprincesses3",
-  storageBucket: "iprincesses3.firebasestorage.app",
-  messagingSenderId: "215534469686",
-  appId: "1:215534469686:web:7ab0d356105efeb015ce97",
-  measurementId: "G-RZQKK5QKHF"
-};
+            apiKey: "AIzaSyBew9lr3hj8dVJj_T7qpdvNWvATJeder5tjU",
+            authDomain: "iprincesshes3.firebaseapp.com",
+            projectId: "iprincesses3",
+            storageBucket: "iprinchesses3.firebasestorage.app",
+            messagingSenderId: "215534469686",
+            appId: "1:215534469686:web:7ayb0d356105efeb015ce97",
+            measurementId: "G-RZQKyK5QKHF"
+        };
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
@@ -1830,10 +1662,6 @@
 
         // Collections
         const princessesCollection = db.collection('princesses');
-
-        // Global variables
-        let currentAdmin = null;
-        let editingPrincessId = null;
 
         // ==================== FIREBASE FUNCTIONS ====================
         
@@ -1869,248 +1697,6 @@
             }
         }
 
-        // ==================== ADMIN FUNCTIONS ====================
-
-        function initializeAdminPanel() {
-            const adminLoginBtn = document.getElementById('admin-login-btn');
-            const adminPanel = document.getElementById('admin-panel');
-            const closeAdmin = document.getElementById('close-admin');
-            const adminLoginSubmit = document.getElementById('admin-login-submit');
-            const savePrincessBtn = document.getElementById('save-princess');
-            const resetFormBtn = document.getElementById('reset-form');
-            const adminImageInput = document.getElementById('admin-image');
-
-            // Show admin button
-            adminLoginBtn.style.display = 'block';
-
-            // Toggle admin panel
-            adminLoginBtn.addEventListener('click', () => {
-                adminPanel.style.display = 'block';
-            });
-
-            closeAdmin.addEventListener('click', () => {
-                adminPanel.style.display = 'none';
-                resetAdminForm();
-            });
-
-            // Admin login
-            adminLoginSubmit.addEventListener('click', adminLogin);
-
-            // Save princess
-            savePrincessBtn.addEventListener('click', savePrincess);
-
-            // Reset form
-            resetFormBtn.addEventListener('click', resetAdminForm);
-
-            // Image preview
-            adminImageInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    // Validate file
-                    if (!file.type.startsWith('image/')) {
-                        alert('Please select an image file');
-                        this.value = '';
-                        return;
-                    }
-                    
-                    if (file.size > 5 * 1024 * 1024) {
-                        alert('Image must be less than 5MB');
-                        this.value = '';
-                        return;
-                    }
-
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const preview = document.getElementById('image-preview');
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
-                    }
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
-
-        async function adminLogin() {
-            const email = document.getElementById('admin-email').value;
-            const password = document.getElementById('admin-password').value;
-
-            try {
-                // For demo - simple check (replace with real auth later)
-                if (email === 'admin@iprincesses.com' && password === 'admin123') {
-                    currentAdmin = { uid: 'admin-demo' };
-                    showAdminManagement();
-                    loadAdminPrincesses();
-                } else {
-                    alert('Invalid credentials. Use: admin@iprincesses.com / admin123');
-                }
-            } catch (error) {
-                alert('Login error: ' + error.message);
-            }
-        }
-
-        function showAdminManagement() {
-            document.getElementById('admin-login-form').style.display = 'none';
-            document.getElementById('admin-management').style.display = 'block';
-        }
-
-        async function loadAdminPrincesses() {
-            try {
-                const snapshot = await princessesCollection.orderBy('createdAt', 'desc').get();
-                const container = document.getElementById('admin-princesses-list');
-                container.innerHTML = '';
-
-                snapshot.forEach(doc => {
-                    const princess = { id: doc.id, ...doc.data() };
-                    const card = createAdminPrincessCard(princess);
-                    container.appendChild(card);
-                });
-            } catch (error) {
-                console.error('Error loading princesses:', error);
-            }
-        }
-
-        function createAdminPrincessCard(princess) {
-            const card = document.createElement('div');
-            card.className = 'princess-card';
-            card.innerHTML = `
-                <div class="princess-img-container">
-                    <img src="${princess.image}" alt="${princess.name}" class="princess-img">
-                    ${princess.shy ? '<div class="face-cover"><div class="face-cover-logo">iP</div></div>' : ''}
-                </div>
-                <div class="princess-info">
-                    <div class="princess-name">
-                        ${princess.name}
-                        <span class="princess-age">${princess.age}</span>
-                    </div>
-                    <p><strong>Status:</strong> ${princess.status}</p>
-                    <p><strong>Location:</strong> ${princess.location}</p>
-                    <div class="admin-actions">
-                        <button class="btn btn-primary" onclick="editPrincess('${princess.id}')">
-                            <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button class="btn btn-danger" onclick="deletePrincess('${princess.id}')">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-                    </div>
-                </div>
-            `;
-            return card;
-        }
-
-        async function savePrincess() {
-            if (!currentAdmin) {
-                alert('Please login first');
-                return;
-            }
-
-            const princessData = {
-                name: document.getElementById('admin-name').value,
-                age: parseInt(document.getElementById('admin-age').value),
-                location: document.getElementById('admin-location').value,
-                phone: document.getElementById('admin-phone').value,
-                status: document.getElementById('admin-status').value,
-                daysLeft: parseInt(document.getElementById('admin-daysLeft').value),
-                services: document.getElementById('admin-services').value.split(',').map(s => s.trim()),
-                remark: document.getElementById('admin-remark').value,
-                shy: document.getElementById('admin-shy').value === 'true',
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-            };
-
-            try {
-                // Handle image upload
-                const imageFile = document.getElementById('admin-image').files[0];
-                if (imageFile) {
-                    const progress = document.getElementById('upload-progress');
-                    progress.style.display = 'block';
-                    progress.textContent = 'Uploading image...';
-                    
-                    princessData.image = await uploadImage(imageFile);
-                    progress.textContent = 'Image uploaded!';
-                } else if (editingPrincessId) {
-                    // Keep existing image when editing
-                    const current = await princessesCollection.doc(editingPrincessId).get();
-                    if (current.exists) {
-                        princessData.image = current.data().image;
-                    }
-                }
-
-                if (editingPrincessId) {
-                    await princessesCollection.doc(editingPrincessId).update(princessData);
-                } else {
-                    princessData.createdAt = firebase.firestore.FieldValue.serverTimestamp();
-                    await princessesCollection.add(princessData);
-                }
-
-                resetAdminForm();
-                loadAdminPrincesses();
-                loadPrincesses(); // Refresh main site
-                alert('Princess saved successfully!');
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error: ' + error.message);
-            }
-        }
-
-        async function editPrincess(id) {
-            try {
-                const doc = await princessesCollection.doc(id).get();
-                if (doc.exists) {
-                    const princess = doc.data();
-                    editingPrincessId = id;
-
-                    // Fill form
-                    document.getElementById('admin-name').value = princess.name;
-                    document.getElementById('admin-age').value = princess.age;
-                    document.getElementById('admin-location').value = princess.location;
-                    document.getElementById('admin-phone').value = princess.phone;
-                    document.getElementById('admin-status').value = princess.status;
-                    document.getElementById('admin-daysLeft').value = princess.daysLeft;
-                    document.getElementById('admin-services').value = princess.services.join(', ');
-                    document.getElementById('admin-remark').value = princess.remark;
-                    document.getElementById('admin-shy').value = princess.shy.toString();
-
-                    // Show image
-                    if (princess.image) {
-                        const preview = document.getElementById('image-preview');
-                        preview.src = princess.image;
-                        preview.style.display = 'block';
-                    }
-                }
-            } catch (error) {
-                console.error('Error loading princess:', error);
-            }
-        }
-
-        async function deletePrincess(id) {
-            if (confirm('Delete this princess?')) {
-                try {
-                    await princessesCollection.doc(id).delete();
-                    loadAdminPrincesses();
-                    loadPrincesses();
-                    alert('Deleted successfully!');
-                } catch (error) {
-                    alert('Error: ' + error.message);
-                }
-            }
-        }
-
-        function resetAdminForm() {
-            document.getElementById('edit-princess-id').value = '';
-            document.getElementById('admin-name').value = '';
-            document.getElementById('admin-age').value = '';
-            document.getElementById('admin-location').value = '';
-            document.getElementById('admin-phone').value = '';
-            document.getElementById('admin-status').value = 'available';
-            document.getElementById('admin-daysLeft').value = '7';
-            document.getElementById('admin-services').value = '';
-            document.getElementById('admin-remark').value = '';
-            document.getElementById('admin-shy').value = 'false';
-            document.getElementById('admin-image').value = '';
-            document.getElementById('image-preview').style.display = 'none';
-            document.getElementById('upload-progress').style.display = 'none';
-            editingPrincessId = null;
-        }
-
         // ==================== YOUR EXISTING CODE ====================
         let users = JSON.parse(localStorage.getItem('iprincesses_users')) || [];
         let currentUser = JSON.parse(localStorage.getItem('iprincesses_current_user')) || null;
@@ -2129,7 +1715,7 @@
                 phone: "+256703055329",
                 daysLeft: 5,
                 status: "available",
-                image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80",
+                image: "images/uri.jpg",
                 shy: false
             },
             {
@@ -2413,7 +1999,6 @@
             loadPrincesses();
             updateAuthUI();
             setupCodeInputs();
-            initializeAdminPanel();
             
             // Mobile menu functionality
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
