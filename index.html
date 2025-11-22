@@ -2294,9 +2294,13 @@
             });
             
             // Browse princesses button
-            document.getElementById('browse-princesses').addEventListener('click', function() {
-                document.getElementById('princesses').scrollIntoView({ behavior: 'smooth' });
-            });
+document.getElementById('browse-princesses').addEventListener('click', function() {
+    // Scroll to princesses section
+    document.getElementById('princesses').scrollIntoView({ behavior: 'smooth' });
+    
+    // Show all princesses
+    filterPrincesses('all');
+});
         });
     </script>
 </body>
