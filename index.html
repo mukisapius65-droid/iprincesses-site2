@@ -1417,6 +1417,50 @@
             </div>
         </div>
     </section>
+    
+// Sample princesses data (fallback)
+        let princesses = [
+            {
+                id: 1,
+                name: "Sophia",
+                age: 24,
+                location: "Kampala",
+                services: ["Dinner Dates", "Travel Companion", "Events"],
+                remark: "Elegant and charming with a passion for art and travel",
+                phone: "+256703055329",
+                daysLeft: 5,
+                status: "available",
+                image: "images/uri.jpg",
+                shy: false
+            },
+            {
+                id: 2,
+                name: "Isabella",
+                age: 22,
+                location: "Entebbe",
+                services: ["Weekend Getaways", "Social Events", "Business Dinners"],
+                remark: "Adventurous soul with a love for nature and photography",
+                phone: "+256703055329",
+                daysLeft: 0,
+                status: "expired",
+                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+                shy: true
+            },
+            {
+        id: 3,
+        name: "Grace",
+        age: 25,
+        location: "Busega",
+        services: ["Massage", "Laz B", "Bj"],
+        remark: "Squirted and moaner",
+        phone: "+256757209118",
+        daysLeft: 11,
+        status: "available",
+        image: "images/grace.jpg",
+        shy: false
+    }
+
+        ];
 
     <!-- Features Section -->
     <section class="container">
@@ -1703,49 +1747,7 @@
         let verificationTimer = null;
         let countdownTime = 60;
 
-        // Sample princesses data (fallback)
-        let princesses = [
-            {
-                id: 1,
-                name: "Sophia",
-                age: 24,
-                location: "Kampala",
-                services: ["Dinner Dates", "Travel Companion", "Events"],
-                remark: "Elegant and charming with a passion for art and travel",
-                phone: "+256703055329",
-                daysLeft: 5,
-                status: "available",
-                image: "images/uri.jpg",
-                shy: false
-            },
-            {
-                id: 2,
-                name: "Isabella",
-                age: 22,
-                location: "Entebbe",
-                services: ["Weekend Getaways", "Social Events", "Business Dinners"],
-                remark: "Adventurous soul with a love for nature and photography",
-                phone: "+256703055329",
-                daysLeft: 0,
-                status: "expired",
-                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
-                shy: true
-            },
-            {
-        id: 3,
-        name: "Grace",
-        age: 25,
-        location: "Busega",
-        services: ["Massage", "Laz B", "Bj"],
-        remark: "Squirted and moaner",
-        phone: "+256757209118",
-        daysLeft: 11,
-        status: "available",
-        image: "images/grace.jpg",
-        shy: false
-    }
-
-        ];
+        
 
         // Function to generate random 6-digit code
         function generateVerificationCode() {
