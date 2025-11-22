@@ -1918,26 +1918,25 @@ async function loadPrincesses() {
                                 ${servicesHTML}
                             </div>
                         </div>
-                        <div class="princess-contact">
-                            ${princess.status === "available" ? 
-                                `<div class="princess-phone">
-                                    <i class="fas fa-phone"></i> ${displayPhone}
-                                    <div class="contact-options">
-                                        <a href="https://wa.me/${princess.phone.replace('+', '')}" class="contact-option whatsapp" target="_blank">
-                                            <i class="fab fa-whatsapp"></i> WhatsApp
-                                        </a>
-                                        <a href="tel:${princess.phone}" class="contact-option call">
-                                            <i class="fas fa-phone"></i> Call Now
-                                        </a>
-                                    </div>
-                                </div>` : 
-                                `<span class="princess-phone" style="color: var(--danger)">Not Available</span>`
-                            }
-                            ${princess.status !== "expired" ? 
-                                `<span class="princess-time" style="color: ${timeColor}">${princess.daysLeft} days left</span>` : 
-                                `<span class="princess-time" style="color: var(--danger)">Expired</span>`
-                            }
-                        </div>
+                        `
+<div class="princess-contact">
+    ${princess.status === "available" ? 
+        `<div style="display: flex; gap: 10px;">
+            <a href="tel:${princess.phone}" class="phone-clickable" style="color: var(--light); text-decoration: none; display: flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 20px; background: var(--success);">
+                <i class="fas fa-phone"></i> Call
+            </a>
+            <a href="https://wa.me/${princess.phone.replace('+', '')}" class="phone-clickable" style="color: var(--light); text-decoration: none; display: flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 20px; background: var(--whatsapp);" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>` : 
+        `<span class="princess-phone" style="color: var(--danger)">Not Available</span>`
+    }
+    ${princess.status !== "expired" ? 
+        `<span class="princess-time" style="color: ${timeColor}">${princess.daysLeft} days left</span>` : 
+        `<span class="princess-time" style="color: var(--danger)">Expired</span>`
+    }
+</div>
+`
                     </div>
                 </div>
             `;
