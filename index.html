@@ -1682,22 +1682,27 @@
         }
 
         // Load princesses for main website
-        async function loadPrincesses() {
-            try {
-                const snapshot = await princessesCollection.where('status', 'in', ['available', 'unavailable']).get();
-                const princesses = [];
-                
-                snapshot.forEach(doc => {
-                    princesses.push({ id: doc.id, ...doc.data() });
-                });
+async function loadPrincesses() {
+    try {
+        const snapshot = await princessesCollection.where('status', 'in', ['available', 'unavailable']).get();
+        const firebasePrincesses = [];
+        
+        snapshot.forEach(doc => {
+            firebasePrincesses.push({ id: doc.id, ...doc.data() });
+        });
 
-                renderPrincesses(princesses);
-            } catch (error) {
-                console.error('Error loading princesses:', error);
-                // Fallback to local data if Firebase fails
-                renderPrincesses(window.princesses || []);
-            }
+        // If Firebase returns princesses, use them, otherwise use local data
+        if (firebasePrincesses.length > 0) {
+            renderPrincesses(firebasePrincesses);
+        } else {
+            renderPrincesses(princesses);
         }
+    } catch (error) {
+        console.error('Error loading princesses:', error);
+        // Fallback to local data if Firebase fails
+        renderPrincesses(princesses);
+    }
+}
 
         // ==================== YOUR EXISTING CODE ====================
         let users = JSON.parse(localStorage.getItem('iprincesses_users')) || [];
